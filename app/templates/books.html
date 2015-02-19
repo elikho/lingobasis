@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container theme-showcase" role="main">
+
+	<!-- TABLE
+	================================================== -->
+	<div class="page-header">
+		
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-6">
+			<!-- PANELS
+			================================================== -->
+			<div class="bs-example">
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Upload file</a>
+							</h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<form action="" method=post enctype=multipart/form-data>
+									<div class="form-group">
+										<!-- <label for="exampleInputFile">File input</label> -->
+										<input type="file" name='file'>
+										<p class="help-block">Suppoted formats: txt, pdf, epub, fb2, doc, docx</p>
+										<input type=submit value=Upload class="btn btn-sm btn-primary">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Enter url</a>
+							</h4>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse">
+							<div class="panel-body">
+								<p><input type="text" class="form-control" placeholder="http://">
+									<button type="button" class="btn btn-sm btn-primary">Get</button></p>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-warning">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Or type text manually</a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse">
+								<div class="panel-body">
+									<p><textarea class="form-control" rows="10"></textarea>
+										<button type="button" class="btn btn-sm btn-primary">Process</button></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+						<div class="col-md-6">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Word</th>
+										<th>Count</th>
+										<th>Translation</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% if pairs %}
+									{% for pair in pairs[:15] %}
+									<tr>
+										<td>{{loop.index}}</td>
+										<td>{{pair[0]}}</td>
+										<td>{{pair[1]}}</td>
+										<td>coming soon..</td>
+									</tr>
+									{% endfor %}
+									{% else %}
+									{% for i in range(15) %}
+									<tr>
+										<td>{{loop.index}}</td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									{% endfor %}
+									{% endif %}
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+	</div>
+
+				{% endblock %}
