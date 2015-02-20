@@ -77,13 +77,13 @@
 									</tr>
 								</thead>
 								<tbody>
-									{% if pairs %}
-									{% for pair in pairs[:15] %}
+									{% if words %}
+									{% for word in words[:15] %}
 									<tr>
 										<td>{{loop.index}}</td>
-										<td>{{pair[0]}}</td>
-										<td>{{pair[1]}}</td>
-										<td>coming soon..</td>
+										<td>{{word[0]}}</td>
+										<td>{{word[1]}}</td>
+										<td>{{translations[word[0]]}}</td>
 									</tr>
 									{% endfor %}
 									{% else %}
@@ -104,3 +104,9 @@
 	</div>
 
 				{% endblock %}
+				
+  {% block footer %}
+{% if is_copyright %}
+        <p class="pull-right">«Переведено сервисом <a href="http://translate.yandex.ru/">«Яндекс.Перевод»</a></p>
+{% endif %}
+  {% endblock %}

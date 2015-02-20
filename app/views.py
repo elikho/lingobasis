@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
+
 import os
 from app import app # from pacckage app imports variable 'app'
 from flask import Flask, request, redirect, url_for, render_template, send_from_directory, send_file
 from werkzeug import secure_filename
-from logic import process_file
+from logic import process_file, translate
 
 @app.route('/')
 @app.route('/index')
@@ -21,11 +23,13 @@ def books():
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 			words = process_file(filename)
-			return render_template("books.html", pairs=[word for word in words if len(word[0])>2])
+			is_yandex, translations = translate([w[0] for w in words])
+			return render_template("books.html", words=words, \
+				translations=translations, is_copyright=is_yandex)
 			# return redirect(url_for('uploaded_file',
 			# 	filename=filename))
 			
-	return render_template("books.html")
+	return render_template("books.html", is_copyright=False)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
